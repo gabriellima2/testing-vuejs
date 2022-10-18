@@ -1,7 +1,13 @@
 <script setup>
 import { defineProps } from "vue";
+import { useStore } from "vuex";
 
+const store = useStore();
 const props = defineProps({
+	id: {
+		type: Number,
+		required: true
+	},
 	title: {
 		type: String,
 		required: true
@@ -11,12 +17,19 @@ const props = defineProps({
 		required: false
 	},
 });
+
+function handleRemove(id) {
+	store.commit("removeTask", id);
+}
 </script>
 
 <template>
 	<li class="task">
-		<h1 class="task__title">{{ props.title }}</h1>
-		<p>{{ props.description }}</p>
+		<section>
+			<h1 class="task__title">{{ props.title }}</h1>
+			<p>{{ props.description }}</p>
+		</section>
+		<button @click="handleRemove(props.id)">Remover</button>
 	</li>
 </template>
 

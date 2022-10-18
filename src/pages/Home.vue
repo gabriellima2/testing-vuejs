@@ -1,19 +1,22 @@
 <script setup>
 import { computed, ref } from "vue";
+import { useStore } from "vuex";
 
+import TaskList from "../components/Task/TaskList.vue";
 import Dialog from "../components/Dialog.vue";
 import Form from "../components/Form.vue";
-import Task from "../components/Task.vue";
 
-const tasks = ref([]);
 const dialogIsActive = ref(false);
 
+const store = useStore();
+
 const handleEmptyDesc = computed(() => {
-	return tasks.value.map((task) => {
+	/*return tasks.value.map((task) => {
 		if (!task.desc) return {...task, desc: "Sem descrição"};
 
 		return task;
-	});
+	});*/
+	return "";
 });
 
 function openDialog() {
@@ -26,7 +29,9 @@ function closeDialog() {
 
 function handleAddTask(taskTitle, taskDescription) {
 	closeDialog();
-	tasks.value.push({id: Math.random(), title: taskTitle, desc: taskDescription});
+
+	const task = {id: Math.random(), title: taskTitle, desc: taskDescription};
+	store.commit("addTask", task);
 }
 </script>
 
@@ -45,9 +50,7 @@ function handleAddTask(taskTitle, taskDescription) {
 		</main>
 
 		<section>
-			<ul class="tasks__list" v-for="task in handleEmptyDesc" :key="task.id">
-				<Task :title="task.title" :description="task.desc" />
-			</ul>
+			<TaskList />
 		</section>
 	</div>
 </template>
@@ -67,11 +70,5 @@ function handleAddTask(taskTitle, taskDescription) {
 
 	margin-top: 236px;
 	margin-bottom: 60px;
-}
-.tasks__list {
-	display: flex;
-	align-items: flex-start;
-	flex-direction: column;
-	gap: 24px;
 }
 </style>
