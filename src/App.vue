@@ -7,3 +7,9 @@ import Home from "./pages/Home.vue";
 <template>
 	<Home />
 </template>
+
+<style>
+.overflow-hidden {
+	overflow: hidden;
+}
+</style>

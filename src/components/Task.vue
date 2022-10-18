@@ -14,12 +14,18 @@ const props = defineProps({
 </script>
 
 <template>
-	<li>
-		<h1>{{ props.title }}</h1>
+	<li class="task">
+		<h1 class="task__title">{{ props.title }}</h1>
 		<p>{{ props.description }}</p>
 	</li>
 </template>
 
 <style scoped>
+.task {
+	list-style: none;
+}
 
+.task__title {
+	text-transform: capitalize;
+}
 </style>

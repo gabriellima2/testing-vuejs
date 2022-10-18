@@ -37,36 +37,37 @@ function handleSubmit() {
 </template>
 
 <style scoped>
-	.form {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		gap: 12px;
-	}
+.form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 12px;
+}
 
-	.form__title {
-		text-transform: capitalize;
-		letter-spacing: 0.4px;
+.form__title {
+	text-transform: capitalize;
+	letter-spacing: 0.4px;
 
-		margin-bottom: 16px;
-	}
+	margin-bottom: 16px;
+}
 
-	.form__label {
-		width: 100%;
-	}
+.form__label {
+	width: 100%;
+}
 
-	.form__input {
-		width: 100%;
-	}
+.form__input {
+	width: 100%;
+}
 
+.form__description {
+	width: 100%;
+	resize: none;
+}
+
+@media screen and (max-width: 768px) {
 	.form__description {
- 	 	resize: none;
+		width: 400px;
 	}
-
-	@media screen and (max-width: 768px) {
-		.form__description {
-			width: 400px;
-		}
-	}
+}
 </style>
