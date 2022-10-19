@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps } from "vue";
 import { useStore } from "vuex";
+import { RouterLink } from "vue-router";
 
 const store = useStore();
 const props = defineProps({
@@ -25,11 +26,13 @@ function handleRemove(id) {
 
 <template>
 	<li class="task">
-		<section>
-			<h1 class="task__title">{{ props.title }}</h1>
-			<p>{{ props.description }}</p>
-		</section>
-		<button @click="handleRemove(props.id)">Remover</button>
+		<RouterLink :to="{name: 'Details', params: { id: props.id }}">
+			<section>
+				<h1 class="task__title">{{ props.title }}</h1>
+				<p>{{ props.description }}</p>
+			</section>
+			<button @click="handleRemove(props.id)">Remover</button>
+		</RouterLink>
 	</li>
 </template>
 

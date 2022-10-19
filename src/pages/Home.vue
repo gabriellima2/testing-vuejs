@@ -1,23 +1,13 @@
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useStore } from "vuex";
 
 import TaskList from "../components/Task/TaskList.vue";
 import Dialog from "../components/Dialog.vue";
 import Form from "../components/Form.vue";
 
-const dialogIsActive = ref(false);
-
 const store = useStore();
-
-const handleEmptyDesc = computed(() => {
-	/*return tasks.value.map((task) => {
-		if (!task.desc) return {...task, desc: "Sem descrição"};
-
-		return task;
-	});*/
-	return "";
-});
+const dialogIsActive = ref(false);
 
 function openDialog() {
 	dialogIsActive.value = true;
@@ -30,7 +20,7 @@ function closeDialog() {
 function handleAddTask(taskTitle, taskDescription) {
 	closeDialog();
 
-	const task = {id: Math.random(), title: taskTitle, desc: taskDescription};
+	const task = {id: Math.random(), title: taskTitle, description: taskDescription};
 	store.commit("addTask", task);
 }
 </script>
